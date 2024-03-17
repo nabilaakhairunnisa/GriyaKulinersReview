@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.nabila.griyakulinersreview.data.model.MenuMakanan
+import com.nabila.griyakulinersreview.data.model.Review
 import com.nabila.griyakulinersreview.databinding.ActivityMainBinding
 import com.nabila.griyakulinersreview.ui.adapter.MenuAdapter
 import com.nabila.griyakulinersreview.ui.editusername.EditUsernameActivity
@@ -49,15 +50,30 @@ class MainActivity : AppCompatActivity() {
         mDatabaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val menuList = mutableListOf<MenuMakanan>()
+                for (menuSnapshot in dataSnapshot.children) {
+                    val menuId = menuSnapshot.key
+                    val menuName = menuSnapshot.child("menuName").getValue(String::class.java)
+                    val price = menuSnapshot.child("price").getValue(String::class.java)
+                    val description = menuSnapshot.child("description").getValue(String::class.java)
+                    val imageUrl = menuSnapshot.child("imageUrl").getValue(String::class.java)
 
-                for (snapshot in dataSnapshot.children) {
-                    val menu = snapshot.getValue(MenuMakanan::class.java)
-                    menu?.let {
-                        menuList.reverse()
-                        menuList.add(it)
-                        val adapter = MenuAdapter(menuList)
-                        binding.rvMenu.adapter = adapter
+                    val reviewsSnapshot = menuSnapshot.child("reviews")
+                    val reviews = mutableListOf<Review>()
+                    for (reviewSnapshot in reviewsSnapshot.children) {
+                        val rating = reviewSnapshot.child("rating").getValue(Int::class.java)
+                        val reviewer = reviewSnapshot.child("reviewer").getValue(String::class.java)
+                        val review = reviewSnapshot.child("review").getValue(String::class.java)
+                        if (rating != null && reviewer != null && review != null) {
+                            val reviewObj = Review(reviewer, rating, review)
+                            reviews.add(reviewObj)
+                        }
                     }
+                    val menu = MenuMakanan(menuId!!, menuName!!, price!!, description!!, imageUrl!!, calculateAverageRating(reviews))
+                    menu.let {
+                        menuList.add(it)
+                    }
+                    val adapter = MenuAdapter(menuList.asReversed())
+                    binding.rvMenu.adapter = adapter
                 }
                 binding.loading.visibility = View.GONE
             }
@@ -71,6 +87,21 @@ class MainActivity : AppCompatActivity() {
             addMenu.setOnClickListener {
                 startActivity(Intent(this@MainActivity, UploadActivity::class.java))
             }
+        }
+    }
+
+    private fun calculateAverageRating(reviews: MutableList<Review>): Double {
+        var totalRating = 0
+        var numReviews = 0
+        for (review in reviews) {
+            totalRating += review.rating!!
+            numReviews++
+        }
+        return if (numReviews > 0) {
+            val averageRating = totalRating.toDouble() / numReviews.toDouble()
+            "%.1f".format(averageRating).toDouble()
+        } else {
+            0.0
         }
     }
 

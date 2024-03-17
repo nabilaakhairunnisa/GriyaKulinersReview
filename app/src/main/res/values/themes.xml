@@ -1,0 +1,35 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.GriyaKulinersReview" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/dark_green</item>
+        <item name="android:statusBarColor">@color/dark_green</item>
+    </style>
+
+    <style name="Theme.GriyaKulinersReview" parent="Base.Theme.GriyaKulinersReview" />
+
+    <style name="Margin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+    </style>
+
+    <style name="Star">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:src">@drawable/star_outline</item>
+        <item name="android:contentDescription">@string/star</item>
+    </style>
+
+    <style name="StarYellow">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:src">@drawable/star_outline</item>
+        <item name="android:tint">@color/yellow</item>
+        <item name="android:layout_marginEnd">1dp</item>
+        <item name="android:contentDescription">@string/star</item>
+    </style>
+
+</resources>

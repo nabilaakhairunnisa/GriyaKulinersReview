@@ -25,3 +25,7 @@ fun showDialog (
     }
     alertDialog.create().show()
 }
+
+fun showToast (context: Context, text: Int) {
+    Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+}

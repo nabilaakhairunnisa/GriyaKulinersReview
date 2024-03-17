@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +19,7 @@ import com.nabila.griyakulinersreview.ui.adapter.MenuAdapter
 import com.nabila.griyakulinersreview.ui.editusername.EditUsernameActivity
 import com.nabila.griyakulinersreview.ui.login.LoginActivity
 import com.nabila.griyakulinersreview.ui.showDialog
+import com.nabila.griyakulinersreview.ui.showToast
 import com.nabila.griyakulinersreview.ui.upload.UploadActivity
 import com.nabila.griyakulinersreview.ui.viewmodel.MainViewModel
 import com.nabila.griyakulinersreview.ui.viewmodel.ViewModelFactory
@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.rvMenu.layoutManager = LinearLayoutManager (this@MainActivity)
+
         mDatabaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val menuList = mutableListOf<MenuMakanan>()
@@ -51,31 +53,24 @@ class MainActivity : AppCompatActivity() {
                 for (snapshot in dataSnapshot.children) {
                     val menu = snapshot.getValue(MenuMakanan::class.java)
                     menu?.let {
-                        menuList.add(it)
                         menuList.reverse()
+                        menuList.add(it)
+                        val adapter = MenuAdapter(menuList)
+                        binding.rvMenu.adapter = adapter
                     }
                 }
-                val adapter = MenuAdapter(menuList)
-                binding.rvMenu.adapter = adapter
                 binding.loading.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(this@MainActivity, "Failed to retrieve data", Toast.LENGTH_SHORT).show()
+                showToast(this@MainActivity, R.string.failed_to_retrieve_data)
             }
         })
 
         binding.apply {
-            rvMenu.layoutManager = LinearLayoutManager (this@MainActivity)
             addMenu.setOnClickListener {
                 startActivity(Intent(this@MainActivity, UploadActivity::class.java))
             }
-        }
-
-        viewModel.getMenuList().observe(this) { menuList ->
-            val adapter = MenuAdapter(menuList)
-            binding.rvMenu.adapter = adapter
-            binding.loading.visibility = View.GONE
         }
     }
 
@@ -102,44 +97,3 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 }
-
-//class MainActivity : AppCompatActivity() {
-//
-//    private lateinit var binding: ActivityMainBinding
-//    private val viewModel: MainViewModel by viewModels { ViewModelFactory.getInstance(this) }
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//
-//        binding.apply {
-//            rvMenu.layoutManager = LinearLayoutManager (this@MainActivity)
-//            addMenu.setOnClickListener {
-//                startActivity(Intent(this@MainActivity, UploadActivity::class.java))
-//            }
-//        }
-//
-//        viewModel.getSession().observe(this) { user ->
-//            if (!user.isLogin) {
-//                startActivity(Intent(this, LoginActivity::class.java))
-//                finish()
-//            }
-//        }
-//
-//        viewModel.getMenuList().observe(this) { menuList ->
-//            val adapter = MenuAdapter(menuList)
-//            binding.rvMenu.adapter = adapter
-//            binding.loading.visibility = View.GONE
-//        }
-//    }
-//
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.menu_main, menu)
-//        return super.onCreateOptionsMenu(menu)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return super.onOptionsItemSelected(item)
-//    }
-//}

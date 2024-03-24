@@ -49,26 +49,12 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"/>
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp">
-                <ImageView
-                    android:layout_height="20dp"
-                    android:layout_width="20dp"
-                    android:src="@drawable/star_fill"
-                    android:contentDescription="@string/icon_star" />
-                <TextView
-                    android:id="@+id/rating"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingTop="3dp"
-                    android:textColor="@color/white"
-                    android:text="@string/rating"/>
-            </LinearLayout>
+                android:text="13.000"
+                android:textColor="@color/yellow"/>
 
             <TextView
                 android:id="@+id/desc"

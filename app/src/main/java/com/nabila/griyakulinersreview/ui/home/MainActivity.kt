@@ -1,4 +1,4 @@
-package com.nabila.griyakulinersreview
+package com.nabila.griyakulinersreview.ui.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.nabila.griyakulinersreview.R
 import com.nabila.griyakulinersreview.data.model.MenuMakanan
 import com.nabila.griyakulinersreview.data.model.Review
 import com.nabila.griyakulinersreview.databinding.ActivityMainBinding
@@ -29,19 +30,21 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels { ViewModelFactory.getInstance(this) }
-    private var mDatabaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("menu")
+    private lateinit var mDatabaseRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("menu")
+
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
                 startActivity(Intent(this, LoginActivity::class.java))
-                finish()
-            } else if (user.username != "griya123") {
-                binding.addMenu.visibility = View.GONE
+                if (user.username != "griya123") {
+                    binding.addMenu.visibility = View.GONE
+                }
             }
         }
 
@@ -68,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                             reviews.add(reviewObj)
                         }
                     }
-                    val menu = MenuMakanan(menuId!!, menuName!!, price!!, description!!, imageUrl!!, calculateAverageRating(reviews))
+                    val menu = MenuMakanan(menuId!!, menuName!!, price!!, description!!, imageUrl!!,)
                     menu.let {
                         menuList.add(it)
                     }
@@ -98,7 +101,7 @@ class MainActivity : AppCompatActivity() {
             numReviews++
         }
         return if (numReviews > 0) {
-            val averageRating = totalRating.toDouble() / numReviews.toDouble()
+            val averageRating = totalRating.toFloat() / numReviews.toFloat()
             "%.1f".format(averageRating).toDouble()
         } else {
             0.0
@@ -120,10 +123,12 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.logout_confirm),
                 positiveButtonAction = {
                     viewModel.logout()
+                    startActivity(Intent(this, LoginActivity::class.java))
                     finish()
                 },
                 getString(R.string.logout_success)
             )
+
         }
         return super.onOptionsItemSelected(item)
     }

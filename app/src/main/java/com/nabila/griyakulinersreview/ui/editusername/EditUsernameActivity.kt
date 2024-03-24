@@ -4,10 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.nabila.griyakulinersreview.MainActivity
 import com.nabila.griyakulinersreview.R
 import com.nabila.griyakulinersreview.data.model.User
 import com.nabila.griyakulinersreview.databinding.ActivityLoginBinding
+import com.nabila.griyakulinersreview.ui.home.MainActivity
+import com.nabila.griyakulinersreview.ui.showToast
 import com.nabila.griyakulinersreview.ui.viewmodel.MainViewModel
 import com.nabila.griyakulinersreview.ui.viewmodel.ViewModelFactory
 
@@ -30,6 +31,7 @@ class EditUsernameActivity: AppCompatActivity() {
             login.setOnClickListener {
                 val username = username.text.toString()
                 viewmodel.saveSession(User(username))
+                showToast(this@EditUsernameActivity, R.string.edit_username_success)
                 startActivity(Intent(this@EditUsernameActivity, MainActivity::class.java))
                 finish()
             }

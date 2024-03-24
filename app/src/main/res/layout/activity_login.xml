@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/dark_green"
     tools:context=".ui.login.LoginActivity"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:orientation="vertical">
 
     <ImageView
         android:layout_width="match_parent"
@@ -44,7 +43,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.8"
         android:src="@drawable/bottom"
         android:layout_gravity="top"
         android:scaleType="centerCrop"

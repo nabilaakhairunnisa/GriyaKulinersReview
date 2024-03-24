@@ -23,7 +23,7 @@ class MenuAdapter(private val menuList: List<MenuMakanan>) : RecyclerView.Adapte
             binding.apply {
                 menuName.text = menu.menuName
                 desc.text = menu.description
-                rating.text = menu.ratings.toString()
+                tvPrice.text = menu.price
                 Glide.with(itemView)
                     .load(menu.imageUrl)
                     .into(image)

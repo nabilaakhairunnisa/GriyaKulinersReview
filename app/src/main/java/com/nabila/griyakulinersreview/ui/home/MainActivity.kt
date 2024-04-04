@@ -26,6 +26,7 @@ import com.nabila.griyakulinersreview.ui.upload.UploadActivity
 import com.nabila.griyakulinersreview.ui.viewmodel.MainViewModel
 import com.nabila.griyakulinersreview.ui.viewmodel.ViewModelFactory
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -40,11 +41,8 @@ class MainActivity : AppCompatActivity() {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("menu")
 
         viewModel.getSession().observe(this) { user ->
-            if (!user.isLogin) {
-                startActivity(Intent(this, LoginActivity::class.java))
-                if (user.username != "griya123") {
-                    binding.addMenu.visibility = View.GONE
-                }
+            if (user.username == "griya123") {
+                binding.addMenu.visibility = View.VISIBLE
             }
         }
 
@@ -71,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                             reviews.add(reviewObj)
                         }
                     }
-                    val menu = MenuMakanan(menuId!!, menuName!!, price!!, description!!, imageUrl!!,)
+                    val menu = MenuMakanan(menuId!!, menuName!!, price!!, description!!, imageUrl!!)
                     menu.let {
                         menuList.add(it)
                     }

@@ -13,7 +13,10 @@
         android:theme="@style/Theme.GriyaKulinersReview"
         tools:targetApi="33">
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.register.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.MainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.detail.DetailActivity"
@@ -25,7 +28,7 @@
             android:name=".ui.editusername.EditUsernameActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.MainActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

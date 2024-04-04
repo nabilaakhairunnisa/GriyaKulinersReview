@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.nabila.griyakulinersreview.data.model.User
 import com.nabila.griyakulinersreview.databinding.ActivityLoginBinding
 import com.nabila.griyakulinersreview.ui.home.MainActivity
+import com.nabila.griyakulinersreview.ui.register.RegisterActivity
 import com.nabila.griyakulinersreview.ui.viewmodel.MainViewModel
 import com.nabila.griyakulinersreview.ui.viewmodel.ViewModelFactory
 
@@ -20,12 +21,12 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        viewModel.getSession().observe(this) { user ->
-//            if (user.isLogin) {
-//                startActivity(Intent(this, MainActivity::class.java))
-//                finish()
-//            }
-//        }
+        viewModel.getSession().observe(this) { user ->
+            if (user.isLogin) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
+        }
 
         supportActionBar?.hide()
 
@@ -34,6 +35,10 @@ class LoginActivity : AppCompatActivity() {
             viewModel.saveSession(User(username, true))
             startActivity(Intent(this, MainActivity::class.java))
             finish()
+        }
+
+        binding.register.setOnClickListener{
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 }

@@ -14,7 +14,7 @@
     <string name="reviews">Reviews</string>
     <string name="nabila">Nabila</string>
     <string name="ulasan">Rasanya Enak</string>
-    <string name="input_username">Masukkan username</string>
+    <string name="input_username">Masukkan Username</string>
     <string name="login">Masuk</string>
     <string name="icon_login">Icon Login</string>
     <string name="bottom">Bottom</string>
@@ -42,4 +42,7 @@
     <string name="rp">Rp. </string>
     <string name="failed_to_retrieve_data">Failed to retrieve data</string>
     <string name="edit_username_success">Username Berhasil Diubah</string>
+    <string name="input_email">Masukkan Email</string>
+    <string name="input_password">Masukkan Password</string>
+    <string name="register">Buat Akun</string>
 </resources>

@@ -18,7 +18,6 @@ import com.nabila.griyakulinersreview.data.model.MenuMakanan
 import com.nabila.griyakulinersreview.data.model.Review
 import com.nabila.griyakulinersreview.databinding.ActivityMainBinding
 import com.nabila.griyakulinersreview.ui.adapter.MenuAdapter
-import com.nabila.griyakulinersreview.ui.editusername.EditUsernameActivity
 import com.nabila.griyakulinersreview.ui.login.LoginActivity
 import com.nabila.griyakulinersreview.ui.showDialog
 import com.nabila.griyakulinersreview.ui.showToast
@@ -112,9 +111,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.edit_username) {
-            startActivity(Intent(this, EditUsernameActivity::class.java))
-        } else if (item.itemId == R.id.logout) {
+        if (item.itemId == R.id.logout) {
             showDialog(
                 this,
                 getString(R.string.logout),
@@ -123,10 +120,9 @@ class MainActivity : AppCompatActivity() {
                     viewModel.logout()
                     startActivity(Intent(this, LoginActivity::class.java))
                     finish()
-                },
+                }, 
                 getString(R.string.logout_success)
             )
-
         }
         return super.onOptionsItemSelected(item)
     }

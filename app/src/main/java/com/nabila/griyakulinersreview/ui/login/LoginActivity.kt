@@ -11,6 +11,7 @@ import com.nabila.griyakulinersreview.ui.register.RegisterActivity
 import com.nabila.griyakulinersreview.ui.viewmodel.MainViewModel
 import com.nabila.griyakulinersreview.ui.viewmodel.ViewModelFactory
 
+
 class LoginActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels { ViewModelFactory.getInstance(this) }
@@ -31,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.login.setOnClickListener {
-            val username = binding.username.text.toString()
+            val username = binding.edtEmail.text.toString()
             viewModel.saveSession(User(username, true))
             startActivity(Intent(this, MainActivity::class.java))
             finish()

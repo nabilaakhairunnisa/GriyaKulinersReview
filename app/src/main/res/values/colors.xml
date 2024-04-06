@@ -10,5 +10,6 @@
     <color name="transparant">#00000000</color>
     <color name="blur">#50000000</color>
     <color name="yellow">#FFFF00</color>
+    <color name="orange">#FFC107</color>
     <color name="brown">#5D4C31</color>
 </resources>

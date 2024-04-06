@@ -17,8 +17,11 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         binding.login.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
     }
 }

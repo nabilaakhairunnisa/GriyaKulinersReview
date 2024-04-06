@@ -12,36 +12,50 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.5"
+        android:layout_weight="2"
         android:src="@drawable/login"
         android:layout_gravity="top"
         android:scaleType="centerCrop"
         android:contentDescription="@string/icon_login" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/username"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:backgroundTint="@color/white"
-        android:hint="@string/input_username"
+        android:layout_marginTop="20dp"
         android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:layout_marginTop="10dp"/>
+        style="@style/LoginTextInputLayoutStyle">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/password"
-        android:inputType="textPassword"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:hint="@string/input_username" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/white"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:backgroundTint="@color/white"
-        android:hint="@string/input_password"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:layout_marginTop="10dp"/>
+        style="@style/LoginTextInputLayoutStyle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:inputType="textPassword"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="@string/input_password"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/login"
@@ -50,34 +64,36 @@
         android:text="@string/login"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/green"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginBottom="30dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:text="Belum Punya Akun?"/>
+            android:text="@string/create_acc"/>
 
         <TextView
             android:id="@+id/register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/yellow"
-            android:text=" Buat Akun Di Sini"/>
+            android:layout_marginStart="4dp"
+            android:text="@string/register"/>
 
     </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8"
+        android:layout_weight="0.5"
         android:src="@drawable/bottom"
         android:layout_gravity="top"
         android:scaleType="centerCrop"

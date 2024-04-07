@@ -47,4 +47,14 @@ class MainViewModel(private val repository: MenuRepository) : ViewModel() {
     fun getReviewList(menuId: String): LiveData<List<Review>> {
         return repository.getReviewList(menuId).asLiveData()
     }
+
+    fun getThemeSettings(): LiveData<Boolean> {
+        return repository.getThemeSetting().asLiveData()
+    }
+
+    fun saveThemeSetting(isDarkModeActive: Boolean) {
+        viewModelScope.launch {
+            repository.saveThemeSetting(isDarkModeActive)
+        }
+    }
 }

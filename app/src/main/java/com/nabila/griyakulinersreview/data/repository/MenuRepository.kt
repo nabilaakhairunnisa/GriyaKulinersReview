@@ -31,6 +31,14 @@ class MenuRepository(private val preference: MenuPreference) {
         instance = null
     }
 
+    fun getThemeSetting(): Flow<Boolean> {
+        return preference.getThemeSetting()
+    }
+
+    suspend fun saveThemeSetting (isDarkModeActive: Boolean) {
+        preference.saveThemeSetting(isDarkModeActive)
+    }
+
     fun addMenu(menuName: String, description: String, imageUrl: String) {
         val menuId = databaseRef.push().key
         val menu = MenuMakanan(menuId!!, menuName, description, imageUrl)

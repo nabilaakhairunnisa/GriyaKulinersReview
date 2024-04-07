@@ -15,6 +15,8 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 
 class MenuPreference private constructor(private val dataStore: DataStore<Preferences>){
 
+    private val THEME_KEY = booleanPreferencesKey("theme_setting")
+
     suspend fun saveSession(user: User) {
         dataStore.edit { preferences ->
             preferences[UNAME_KEY] = user.username
@@ -36,6 +38,18 @@ class MenuPreference private constructor(private val dataStore: DataStore<Prefer
             preferences.clear()
         }
         INSTANCE = null
+    }
+
+    fun getThemeSetting(): Flow<Boolean> {
+        return dataStore.data.map { preferences ->
+            preferences[THEME_KEY] ?: false
+        }
+    }
+
+    suspend fun saveThemeSetting (isDarkModeActive: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[THEME_KEY] = isDarkModeActive
+        }
     }
 
     companion object {

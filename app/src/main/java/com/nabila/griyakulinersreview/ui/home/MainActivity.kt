@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -22,14 +24,10 @@ import com.nabila.griyakulinersreview.ui.login.LoginActivity
 import com.nabila.griyakulinersreview.ui.showDialog
 import com.nabila.griyakulinersreview.ui.showToast
 import com.nabila.griyakulinersreview.ui.upload.UploadActivity
-import com.nabila.griyakulinersreview.ui.viewmodel.MainViewModel
-import com.nabila.griyakulinersreview.ui.viewmodel.ViewModelFactory
-
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: MainViewModel by viewModels { ViewModelFactory.getInstance(this) }
     private lateinit var mDatabaseRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,10 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("menu")
 
-        viewModel.getSession().observe(this) { user ->
-            if (user.username == "griya123") {
-                binding.addMenu.visibility = View.VISIBLE
-            }
+        val user = Firebase.auth.currentUser
+
+        if (user!!.email == "griyakuliner@gmail.com") {
+            binding.addMenu.visibility = View.VISIBLE
         }
 
         binding.rvMenu.layoutManager = LinearLayoutManager (this@MainActivity)
@@ -90,21 +88,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun calculateAverageRating(reviews: MutableList<Review>): Double {
-        var totalRating = 0
-        var numReviews = 0
-        for (review in reviews) {
-            totalRating += review.rating!!
-            numReviews++
-        }
-        return if (numReviews > 0) {
-            val averageRating = totalRating.toFloat() / numReviews.toFloat()
-            "%.1f".format(averageRating).toDouble()
-        } else {
-            0.0
-        }
-    }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
@@ -117,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.logout),
                 getString(R.string.logout_confirm),
                 positiveButtonAction = {
-                    viewModel.logout()
+                    FirebaseAuth.getInstance().signOut()
                     startActivity(Intent(this, LoginActivity::class.java))
                     finish()
                 }, 

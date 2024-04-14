@@ -98,8 +98,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:indeterminateTint="@color/black"
-            android:layout_marginTop="10dp"
+            android:indeterminateTint="?attr/colorSecondary"
+            android:layout_marginTop="100dp"
             android:visibility="gone" />
 
     </FrameLayout>

@@ -7,27 +7,10 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.nabila.griyakulinersreview.data.model.MenuMakanan
 import com.nabila.griyakulinersreview.data.model.Review
-import com.nabila.griyakulinersreview.data.model.User
 import com.nabila.griyakulinersreview.data.repository.MenuRepository
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: MenuRepository) : ViewModel() {
-
-    fun saveSession(user: User) {
-        viewModelScope.launch {
-            repository.saveSession(user)
-        }
-    }
-
-    fun getSession(): LiveData<User> {
-        return repository.getSession().asLiveData()
-    }
-
-    fun logout() {
-        viewModelScope.launch {
-            repository.logout()
-        }
-    }
 
     fun addMenu(menuName: String, description: String, imageUri: Uri) {
         viewModelScope.launch {
@@ -46,15 +29,5 @@ class MainViewModel(private val repository: MenuRepository) : ViewModel() {
 
     fun getReviewList(menuId: String): LiveData<List<Review>> {
         return repository.getReviewList(menuId).asLiveData()
-    }
-
-    fun getThemeSettings(): LiveData<Boolean> {
-        return repository.getThemeSetting().asLiveData()
-    }
-
-    fun saveThemeSetting(isDarkModeActive: Boolean) {
-        viewModelScope.launch {
-            repository.saveThemeSetting(isDarkModeActive)
-        }
     }
 }

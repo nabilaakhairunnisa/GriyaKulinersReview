@@ -7,8 +7,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.nabila.griyakulinersreview.data.model.MenuMakanan
 import com.nabila.griyakulinersreview.data.model.Review
-import com.nabila.griyakulinersreview.data.model.User
-import com.nabila.griyakulinersreview.data.preference.MenuPreference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
@@ -16,28 +14,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class MenuRepository(private val preference: MenuPreference) {
-
-    fun getSession(): Flow<User> {
-        return preference.getSession()
-    }
-
-    suspend fun saveSession(user: User) {
-        preference.saveSession(user)
-    }
-
-    suspend fun logout() {
-        preference.logout()
-        instance = null
-    }
-
-    fun getThemeSetting(): Flow<Boolean> {
-        return preference.getThemeSetting()
-    }
-
-    suspend fun saveThemeSetting (isDarkModeActive: Boolean) {
-        preference.saveThemeSetting(isDarkModeActive)
-    }
+class MenuRepository {
 
     fun addMenu(menuName: String, description: String, imageUrl: String) {
         val menuId = databaseRef.push().key
@@ -91,19 +68,7 @@ class MenuRepository(private val preference: MenuPreference) {
     }
 
     companion object {
-        @Volatile
-        private var instance: MenuRepository? = null
-        val storageRef: StorageReference
-        val databaseRef: DatabaseReference
-
-        init {
-            storageRef = FirebaseStorage.getInstance().getReference("foto makanan")
-            databaseRef = FirebaseDatabase.getInstance().getReference("menu")
-        }
-
-        fun getInstance(pref: MenuPreference) =
-            instance ?: synchronized(this) {
-                instance ?: MenuRepository(pref)
-            }.also { instance = it }
+        val storageRef: StorageReference = FirebaseStorage.getInstance().getReference("foto makanan")
+        val databaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("menu")
     }
 }

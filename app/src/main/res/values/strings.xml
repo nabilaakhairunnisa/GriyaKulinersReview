@@ -47,4 +47,6 @@
     <string name="register"> Register</string>
     <string name="create_acc">Belum Punya Akun?</string>
     <string name="have_acc">Sudah Punya Akun?</string>
+    <string name="create_acc_success">Akun Berhasil Dibuat, Silahlan Login</string>
+    <string name="empty_email_password">Email dan Password Kosong</string>
 </resources>

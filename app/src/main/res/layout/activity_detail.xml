@@ -43,11 +43,12 @@
                     app:cardCornerRadius="15dp"
                     app:cardElevation="8dp">
                     <ImageView
+                        android:id="@+id/icon"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:contentDescription="@string/add_review"
                         android:src="@drawable/add_review"
-                        android:layout_margin="15dp"
+                        android:layout_margin="10dp"
                         app:tint="@color/white" />
                 </androidx.cardview.widget.CardView>
                 <TextView

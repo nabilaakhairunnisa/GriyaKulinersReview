@@ -34,7 +34,7 @@
     <string name="price">Harga</string>
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
-    <string name="logout_success">Anda Berhasil Keluar</string>
+    <string name="logout_success">Logout Berhasil</string>
     <string name="logout_confirm">Anda yakin ingin keluar?</string>
     <string name="delete_menu">Hapus Menu</string>
     <string name="delete_confirm">Anda yakin ingin menghapus menu?</string>
@@ -54,5 +54,7 @@
     <string name="invalid_email">Invalid email entered</string>
     <string name="enter_password">Enter password</string>
     <string name="invalid_password">Your password must be at least 8 characters</string>
+    <string name="background">Background</string>
+    <string name="logo">Logo</string>
 
 </resources>

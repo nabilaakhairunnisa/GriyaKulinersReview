@@ -1,6 +1,7 @@
 package com.nabila.griyakulinersreview.data.di
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.nabila.griyakulinersreview.data.repository.*
 import dagger.Module
 import dagger.Provides
@@ -13,7 +14,7 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Provides
     @Singleton
-    fun provideAuthRepository(auth: FirebaseAuth): AuthRepository {
-        return AuthRepositoryImpl(auth)
+    fun provideAuthRepository(auth: FirebaseAuth, database: FirebaseDatabase): AuthRepository {
+        return AuthRepositoryImpl(auth, database)
     }
 }

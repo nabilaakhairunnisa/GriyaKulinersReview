@@ -8,11 +8,10 @@ import com.nabila.griyakulinersreview.databinding.ActivityLoginBinding
 import com.nabila.griyakulinersreview.ui.home.MainActivity
 import com.nabila.griyakulinersreview.ui.register.RegisterActivity
 import com.nabila.griyakulinersreview.util.UiState
-import com.nabila.griyakulinersreview.util.ValidateInput
+import com.nabila.griyakulinersreview.util.ValidateInput.validate
 import com.nabila.griyakulinersreview.util.hide
 import com.nabila.griyakulinersreview.util.show
 import com.nabila.griyakulinersreview.util.showToast
-import com.nabila.griyakulinersreview.util.transparentStatusBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,34 +25,44 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+        observer()
+        isLoggedIn()
+
+        binding.apply {
+            login.setOnClickListener { login() }
+            register.setOnClickListener{ moveToRegister() }
+        }
+    }
+
+    private fun isLoggedIn() {
         if (viewModel.isLoggedIn()) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+    }
 
-        observer()
-
-        supportActionBar?.hide()
-        transparentStatusBar(this)
-
+    private fun login() {
         binding.apply {
-            login.setOnClickListener {
-                val email = edtEmail
-                val password = edtPassword
+            val username = intent.getStringExtra("USERNAME")
+            val email = edtEmail
+            val password = edtPassword
 
-                if (ValidateInput.validate(this@LoginActivity, email, password)) {
-                    viewModel.login(
-                        email = email.text.toString(),
-                        password = password.text.toString()
-                    )
-                }
-            }
+            showToast(username.toString())
 
-            register.setOnClickListener{
-                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
-                finish()
+            if (validate(this@LoginActivity, email, password)) {
+                viewModel.login(
+                    username = username.toString(),
+                    email = email.text.toString(),
+                    password = password.text.toString()
+                )
             }
         }
+    }
+
+    private fun moveToRegister() {
+        startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+        finish()
     }
 
     fun observer(){

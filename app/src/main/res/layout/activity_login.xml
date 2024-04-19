@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity"
     android:orientation="vertical"
     android:background="@drawable/bg">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/bg"
-        android:scaleType="centerCrop"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,17 +16,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/amaranth"
             android:gravity="center"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="30dp"/>
+            android:text="@string/login"
+            android:textSize="30sp" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="230dp"
             android:src="@drawable/logo"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginBottom="30dp"
+            android:contentDescription="@string/logo" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -78,6 +72,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/green"/>
 
         <LinearLayout
@@ -98,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/orange"
                 android:layout_marginStart="4dp"
+                android:textStyle="bold"
                 android:text="@string/register"/>
 
         </LinearLayout>

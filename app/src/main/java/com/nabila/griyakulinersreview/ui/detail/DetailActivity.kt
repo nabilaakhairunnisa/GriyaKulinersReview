@@ -20,9 +20,9 @@ import com.nabila.griyakulinersreview.data.model.Review
 import com.nabila.griyakulinersreview.data.repository.MenuRepository
 import com.nabila.griyakulinersreview.databinding.ActivityDetailBinding
 import com.nabila.griyakulinersreview.ui.adapter.ReviewAdapter
-import com.nabila.griyakulinersreview.util.showDialog
 import com.nabila.griyakulinersreview.ui.viewmodel.MainViewModel
 import com.nabila.griyakulinersreview.ui.viewmodel.ViewModelFactory
+import com.nabila.griyakulinersreview.util.showDialog
 
 class DetailActivity : AppCompatActivity() {
 
@@ -56,7 +56,8 @@ class DetailActivity : AppCompatActivity() {
         getReviewList()
 
         if (user.email == "griyakuliner@gmail.com") {
-            binding.btAddReview.visibility = View.GONE
+//            binding.btAddReview.visibility = View.GONE
+            binding.icon.setImageResource(R.drawable.delete)
         }
 
         binding.apply {
@@ -175,6 +176,10 @@ class DetailActivity : AppCompatActivity() {
             )
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun isAdmin() {
+
     }
 
     companion object {

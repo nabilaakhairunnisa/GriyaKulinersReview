@@ -24,9 +24,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/register"
+            android:fontFamily="@font/amaranth"
             android:gravity="center"
             android:textSize="30sp"
-            android:textStyle="bold"
             android:layout_marginBottom="10dp"/>
 
         <ImageView
@@ -47,8 +47,9 @@
                 android:id="@+id/edtUsername"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/input_username">
-            </com.google.android.material.textfield.TextInputEditText>
+                android:hint="@string/input_username"
+                android:singleLine="true"
+                android:nextFocusDown="@+id/edtEmail"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,8 +65,9 @@
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/input_email">
-            </com.google.android.material.textfield.TextInputEditText>
+                android:hint="@string/input_email"
+                android:singleLine="true"
+                android:nextFocusDown="@+id/edtPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,8 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
-                android:hint="@string/input_password">
-            </com.google.android.material.textfield.TextInputEditText>
+                android:hint="@string/input_password"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,6 +103,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp">
 
             <TextView
@@ -115,7 +117,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/orange"
                 android:layout_marginStart="4dp"
-                android:text="@string/login"/>
+                android:text="@string/login"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 

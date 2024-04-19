@@ -1,23 +1,16 @@
 package com.nabila.griyakulinersreview.ui.viewmodel
 
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
 import com.nabila.griyakulinersreview.data.model.MenuMakanan
 import com.nabila.griyakulinersreview.data.model.Review
 import com.nabila.griyakulinersreview.data.repository.MenuRepository
-import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: MenuRepository) : ViewModel() {
-
-    fun addMenu(menuName: String, description: String, imageUri: Uri) {
-        viewModelScope.launch {
-            val imageUrl = repository.uploadImage(imageUri)
-            repository.addMenu(menuName, description, imageUrl)
-        }
-    }
+//    fun login(email: String, password: String) {
+//        repository.login(email, password)
+//    }
 
     fun getMenuList(): LiveData<List<MenuMakanan>> {
         return repository.getMenuList().asLiveData()

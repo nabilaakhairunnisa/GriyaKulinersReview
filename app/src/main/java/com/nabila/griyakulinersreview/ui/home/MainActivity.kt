@@ -21,10 +21,12 @@ import com.nabila.griyakulinersreview.data.model.Review
 import com.nabila.griyakulinersreview.databinding.ActivityMainBinding
 import com.nabila.griyakulinersreview.ui.adapter.MenuAdapter
 import com.nabila.griyakulinersreview.ui.login.LoginActivity
-import com.nabila.griyakulinersreview.ui.showDialog
-import com.nabila.griyakulinersreview.ui.showToast
 import com.nabila.griyakulinersreview.ui.upload.UploadActivity
+import com.nabila.griyakulinersreview.util.showDialog
+import com.nabila.griyakulinersreview.util.showToast
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -39,9 +41,12 @@ class MainActivity : AppCompatActivity() {
 
         val user = Firebase.auth.currentUser
 
-        if (user!!.email == "griyakuliner@gmail.com") {
-            binding.addMenu.visibility = View.VISIBLE
+        if (user != null) {
+            if (user.email == "griyakuliner@gmail.com") {
+                binding.addMenu.visibility = View.VISIBLE
+            }
         }
+
 
         binding.rvMenu.layoutManager = LinearLayoutManager (this@MainActivity)
 
@@ -77,7 +82,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                showToast(this@MainActivity, R.string.failed_to_retrieve_data)
+                showToast(getString(R.string.failed_to_retrieve_data))
             }
         })
 

@@ -20,7 +20,7 @@ import com.nabila.griyakulinersreview.data.model.Review
 import com.nabila.griyakulinersreview.data.repository.MenuRepository
 import com.nabila.griyakulinersreview.databinding.ActivityDetailBinding
 import com.nabila.griyakulinersreview.ui.adapter.ReviewAdapter
-import com.nabila.griyakulinersreview.ui.showDialog
+import com.nabila.griyakulinersreview.util.showDialog
 import com.nabila.griyakulinersreview.ui.viewmodel.MainViewModel
 import com.nabila.griyakulinersreview.ui.viewmodel.ViewModelFactory
 
@@ -40,9 +40,9 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val repository = MenuRepository(/* inisialisasi sesuai kebutuhan */)
+        val repository = MenuRepository()
         val viewModelFactory = ViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
         menuId = intent.getStringExtra(EXTRA_ID)
         val menuPhoto = intent.getStringExtra(EXTRA_PHOTO)

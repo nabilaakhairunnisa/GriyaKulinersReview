@@ -2,6 +2,7 @@
     <style name="Base.Theme.GriyaKulinersReview" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/dark_green</item>
         <item name="colorSecondary">@color/black</item>
+        <item name="colorOnBackground">@color/white</item>
         <item name="android:statusBarColor">@color/dark_green</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
     </style>
@@ -22,6 +23,12 @@
         <item name="android:tint">@color/yellow</item>
         <item name="android:layout_marginEnd">1dp</item>
         <item name="android:contentDescription">@string/star</item>
+    </style>
+
+    <style name="DialogStyle" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 
 </resources>

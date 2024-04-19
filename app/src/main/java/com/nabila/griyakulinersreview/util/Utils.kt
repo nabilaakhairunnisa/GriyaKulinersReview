@@ -1,7 +1,8 @@
-package com.nabila.griyakulinersreview.ui
+package com.nabila.griyakulinersreview.util
 
 import android.app.Activity
 import android.content.Context
+import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -28,9 +29,8 @@ fun showDialog (
     alertDialog.create().show()
 }
 
-fun showToast (context: Context, text: Int) {
-    Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
-}
+fun Context.showToast (text: String) =
+    Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
 
 fun transparentStatusBar(activity: Activity) {
     val w = activity.window
@@ -38,4 +38,15 @@ fun transparentStatusBar(activity: Activity) {
         WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
         WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
     )
+}
+
+fun String.isValidEmail() =
+    isNotEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
+fun View.show(){
+    visibility = View.VISIBLE
+}
+
+fun View.hide(){
+    visibility = View.GONE
 }

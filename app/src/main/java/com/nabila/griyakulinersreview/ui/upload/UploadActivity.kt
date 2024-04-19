@@ -14,7 +14,7 @@ import com.google.firebase.storage.StorageReference
 import com.nabila.griyakulinersreview.R
 import com.nabila.griyakulinersreview.data.model.MenuMakanan
 import com.nabila.griyakulinersreview.databinding.ActivityUploadBinding
-import com.nabila.griyakulinersreview.ui.showToast
+import com.nabila.griyakulinersreview.util.showToast
 
 class UploadActivity : AppCompatActivity() {
 
@@ -74,16 +74,16 @@ class UploadActivity : AppCompatActivity() {
                             val menu = MenuMakanan(menuId, menuName, price, description, imageUrl, 0.0)
                             mDatabaseRef.child(menuId).setValue(menu)
                                 .addOnSuccessListener {
-                                    showToast(this, R.string.upload_successful)
+                                    showToast(getString(R.string.upload_successful))
                                     finish()
                                 }
                         } else {
-                            showToast(this, R.string.failed_id)
+                            showToast(getString( R.string.failed_id))
                         }
                     }
                 }
         } else {
-            showToast(this, R.string.image_unselected)
+            showToast(getString( R.string.image_unselected))
         }
     }
 }

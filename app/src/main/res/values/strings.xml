@@ -48,5 +48,11 @@
     <string name="create_acc">Belum Punya Akun?</string>
     <string name="have_acc">Sudah Punya Akun?</string>
     <string name="create_acc_success">Akun Berhasil Dibuat, Silahlan Login</string>
+    <string name="login_success">Login Berhasil</string>
     <string name="empty_email_password">Email dan Password Kosong</string>
+    <string name="enter_email">Enter email address</string>
+    <string name="invalid_email">Invalid email entered</string>
+    <string name="enter_password">Enter password</string>
+    <string name="invalid_password">Your password must be at least 8 characters</string>
+
 </resources>

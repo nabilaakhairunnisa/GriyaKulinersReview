@@ -16,10 +16,28 @@ import kotlin.coroutines.suspendCoroutine
 
 class MenuRepository {
 
-    fun addMenu(menuName: String, description: String, imageUrl: String) {
-        val menuId = databaseRef.push().key
-        val menu = MenuMakanan(menuId!!, menuName, description, imageUrl)
-        databaseRef.child(menuId).setValue(menu)
+    fun addMenu(menuName: String, price: String, description: String, imageUri: Uri) {
+        val fileReference: StorageReference = storageRef.child(System.currentTimeMillis().toString())
+        fileReference.putFile(imageUri)
+            .addOnSuccessListener { takeSnapshot ->
+                takeSnapshot.storage.downloadUrl.addOnSuccessListener { uri ->
+                    val imageUrl = uri.toString()
+                    val menuId = databaseRef.push().key
+                    if (menuId != null) {
+                        val menu = MenuMakanan(menuId, menuName, price, description, imageUrl, 0.0)
+                        databaseRef.child(menuId).setValue(menu)
+                            .addOnSuccessListener {
+                            }
+                            .addOnFailureListener {
+                            }
+                    } else {
+
+                    }
+                }
+            }
+            .addOnFailureListener {
+
+            }
     }
 
     suspend fun uploadImage(imageUri: Uri): String {

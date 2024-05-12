@@ -2,10 +2,10 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/blur"
-    android:id="@+id/reviewLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/blur"
+    android:id="@+id/bg">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -58,14 +58,14 @@
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/description"
+                android:id="@+id/desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/write_feedback"
                 android:layout_marginTop="10dp" />
 
             <Button
-                android:id="@+id/btPostReview"
+                android:id="@+id/addReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/send"/>

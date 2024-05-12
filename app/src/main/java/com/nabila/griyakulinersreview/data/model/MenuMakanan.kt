@@ -5,7 +5,6 @@ data class MenuMakanan(
     val menuName: String = "",
     val price: String = "",
     val description: String = "",
-    val imageUrl: String = "",
-    val ratings: Double = 0.0
+    val imageUrl: String = ""
 )
 

@@ -53,8 +53,10 @@
     <string name="enter_email">Enter email address</string>
     <string name="invalid_email">Invalid email entered</string>
     <string name="enter_password">Enter password</string>
-    <string name="invalid_password">Your password must be at least 8 characters</string>
+    <string name="invalid_password">Your password must be at least 6 characters</string>
     <string name="background">Background</string>
     <string name="logo">Logo</string>
+    <string name="input_new_username">Masukkan Username Baru</string>
+    <string name="failed_to_compress_image">Gagal Mengkompres Foto</string>
 
 </resources>

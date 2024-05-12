@@ -22,7 +22,7 @@
                 android:layout_margin="25dp">
 
                 <ImageView
-                    android:id="@+id/ivImage"
+                    android:id="@+id/image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/add_photo"
@@ -40,7 +40,7 @@
                 android:layout_marginEnd="20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tvMenuName"
+                    android:id="@+id/edtMenuName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/nama_menu"
@@ -58,7 +58,7 @@
                 android:layout_marginEnd="20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tvPrice"
+                    android:id="@+id/edtPrice"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/price"
@@ -76,7 +76,7 @@
                 android:layout_marginEnd="20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tvDesc"
+                    android:id="@+id/edtDesc"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/deskripsi"/>
@@ -84,7 +84,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btAddMenu"
+                android:id="@+id/addMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

@@ -23,67 +23,10 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        supportActionBar?.hide()
         observer()
 
         binding.apply {
-            register.setOnClickListener { register()
-
-//                val username = edtUsername
-//                val email = edtEmail
-//                val password = edtPassword
-//
-//                if (validate(this@RegisterActivity, email, password)) {
-//                    viewModel.register(
-//                        username = username.text.toString(),
-//                        email = email.text.toString(),
-//                        password = password.text.toString()
-//                    )
-//                }
-
-
-//                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-//                        if (it.isSuccessful) {
-//                            val user = FirebaseAuth.getInstance().currentUser
-//                            val profileUpdates = UserProfileChangeRequest.Builder()
-//                                .setDisplayName(username)
-//                                .build()
-//
-//                            user?.updateProfile(profileUpdates)?.addOnCompleteListener { updateTask ->
-//                                if (updateTask.isSuccessful) {
-//                                    val currentUser = FirebaseAuth.getInstance().currentUser
-//                                    val displayName = currentUser?.displayName
-//
-//                                    Toast.makeText(
-//                                        this@RegisterActivity,
-//                                        "Create Account Success with username: $displayName",
-//                                        Toast.LENGTH_LONG
-//                                    ).show()
-//
-//                                    startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
-//                                    finish()
-//                                } else {
-//                                    Toast.makeText(
-//                                        this@RegisterActivity,
-//                                        updateTask.exception?.localizedMessage,
-//                                        Toast.LENGTH_LONG
-//                                    ).show()
-//                                }
-//                            }
-//                        }
-//                    }.addOnFailureListener {
-//                        Toast.makeText(
-//                            this@RegisterActivity,
-//                            it.localizedMessage,
-//                            Toast.LENGTH_LONG
-//                        ).show()
-//                    }
-//                } else {
-//                    showToast(getString(R.string.empty_email_password))
-//                }
-            }
-
+            register.setOnClickListener { register() }
             login.setOnClickListener{ moveToLogin() }
         }
     }
@@ -105,7 +48,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun moveToLogin() {
-        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 
@@ -122,10 +65,7 @@ class RegisterActivity : AppCompatActivity() {
                 is UiState.Success -> {
                     binding.loading.hide()
                     showToast(state.data)
-                    val username = binding.edtUsername.text.toString()
-                    startActivity(Intent(this, LoginActivity::class.java)
-                        .putExtra("USERNAME", username))
-                    finish()
+                    moveToLogin()
                 }
             }
         }

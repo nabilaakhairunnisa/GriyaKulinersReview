@@ -34,6 +34,18 @@
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:id="@+id/editUsername"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/edit_username"
+                    app:tint="@color/black"
+                    android:gravity="end"/>
+
+                <ImageView
                     android:id="@+id/logout"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -83,8 +95,7 @@
         android:backgroundTint="@color/cream"
         android:layout_marginBottom="20dp"
         app:cardCornerRadius="25dp"
-        app:cardElevation="10dp"
-        android:visibility="gone">
+        app:cardElevation="10dp">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

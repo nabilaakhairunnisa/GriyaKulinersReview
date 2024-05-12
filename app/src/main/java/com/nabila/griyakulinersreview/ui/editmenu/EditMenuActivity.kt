@@ -1,4 +1,4 @@
-package com.nabila.griyakulinersreview.ui.upload
+package com.nabila.griyakulinersreview.ui.editmenu
 
 import android.content.Intent
 import android.net.Uri
@@ -7,9 +7,14 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.nabila.griyakulinersreview.R
+import com.bumptech.glide.Glide
 import com.nabila.griyakulinersreview.databinding.ActivityUploadBinding
 import com.nabila.griyakulinersreview.ui.home.MainActivity
+import com.nabila.griyakulinersreview.util.EXTRA_DESC
+import com.nabila.griyakulinersreview.util.EXTRA_ID
+import com.nabila.griyakulinersreview.util.EXTRA_NAME
+import com.nabila.griyakulinersreview.util.EXTRA_PHOTO
+import com.nabila.griyakulinersreview.util.EXTRA_PRICE
 import com.nabila.griyakulinersreview.util.UiState
 import com.nabila.griyakulinersreview.util.hide
 import com.nabila.griyakulinersreview.util.show
@@ -17,19 +22,41 @@ import com.nabila.griyakulinersreview.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class UploadActivity : AppCompatActivity() {
+class EditMenuActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUploadBinding
     private lateinit var imageUri: Uri
-    private val viewModel: UploadViewModel by viewModels()
+    private val viewModel: EditMenuViewModel by viewModels()
+    private var menuId: String? = null
+    private var menuPhoto: String? = null
+    private var menuName: String? = null
+    private var menuDesc: String? = null
+    private var price: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUploadBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setData()
+    }
+
+    private fun setData() {
+        menuId = intent.getStringExtra(EXTRA_ID)
+        menuPhoto = intent.getStringExtra(EXTRA_PHOTO)
+        menuName = intent.getStringExtra(EXTRA_NAME)
+        menuDesc = intent.getStringExtra(EXTRA_DESC)
+        price = intent.getStringExtra(EXTRA_PRICE)
 
         binding.apply {
-            addMenu.setOnClickListener { addMenu() }
+            Glide.with(this@EditMenuActivity)
+                .load(menuPhoto)
+                .into(image)
+            edtMenuName.setText(menuName)
+            edtPrice.setText(price)
+            edtDesc.setText(menuDesc)
+            addMenu.text = "Simpan Perubahan"
+            addMenu.setOnClickListener { saveMenu() }
             image.setOnClickListener {
                 launcherGallery.launch(
                     PickVisualMediaRequest(
@@ -53,15 +80,17 @@ class UploadActivity : AppCompatActivity() {
         imageUri.let { binding.image.setImageURI(it) }
     }
 
-    private fun addMenu() {
+    private fun saveMenu() {
+        val newMenuName = binding.edtMenuName.text.toString()
+        val newMenuDesc = binding.edtDesc.text.toString()
+        val newMenuPrice = binding.edtPrice.text.toString()
         if (::imageUri.isInitialized) {
-            val menuName = binding.edtMenuName.text.toString()
-            val menuPrice = binding.edtPrice.text.toString()
-            val menuDesc = binding.edtDesc.text.toString()
-            viewModel.addMenu(imageUri, menuName, menuPrice, menuDesc)
+            viewModel.deletePhoto(menuPhoto!!)
+            viewModel.editMenuWithPhoto(menuId!!, imageUri, newMenuName, newMenuPrice, newMenuDesc)
             result()
         } else {
-            showToast(getString( R.string.image_unselected))
+            viewModel.editMenu(menuId!!, newMenuName, newMenuPrice, newMenuDesc)
+            result()
         }
     }
 
@@ -89,4 +118,3 @@ class UploadActivity : AppCompatActivity() {
         finish()
     }
 }
-

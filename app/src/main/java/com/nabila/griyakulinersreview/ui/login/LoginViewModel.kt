@@ -15,16 +15,11 @@ class LoginViewModel @Inject constructor(val repository: AuthRepository) : ViewM
     val loginState: LiveData<UiState<String>>
         get() = _login
 
-    fun login(username: String, email: String, password: String) {
+    fun login(email: String, password: String) {
         _login.value = UiState.Loading
-        repository.login(username, email, password){
+        repository.login(email, password){
             _login.value = it
         }
-    }
-
-    fun isLoggedIn(): Boolean {
-        val isLoggedIn = repository.isLoggedIn()
-        return isLoggedIn
     }
 
 }

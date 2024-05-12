@@ -10,20 +10,21 @@ import com.bumptech.glide.Glide
 import com.nabila.griyakulinersreview.data.model.MenuMakanan
 import com.nabila.griyakulinersreview.databinding.ItemMenuBinding
 import com.nabila.griyakulinersreview.ui.detail.DetailActivity
-import com.nabila.griyakulinersreview.ui.detail.DetailActivity.Companion.EXTRA_DESC
-import com.nabila.griyakulinersreview.ui.detail.DetailActivity.Companion.EXTRA_ID
-import com.nabila.griyakulinersreview.ui.detail.DetailActivity.Companion.EXTRA_NAME
-import com.nabila.griyakulinersreview.ui.detail.DetailActivity.Companion.EXTRA_PHOTO
-import com.nabila.griyakulinersreview.ui.detail.DetailActivity.Companion.EXTRA_PRICE
+import com.nabila.griyakulinersreview.util.EXTRA_DESC
+import com.nabila.griyakulinersreview.util.EXTRA_ID
+import com.nabila.griyakulinersreview.util.EXTRA_NAME
+import com.nabila.griyakulinersreview.util.EXTRA_PHOTO
+import com.nabila.griyakulinersreview.util.EXTRA_PRICE
+import com.nabila.griyakulinersreview.util.USERNAME
 
-class MenuAdapter(private val menuList: List<MenuMakanan>) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
+class MenuAdapter(private val menuList: List<MenuMakanan>, private val username: String) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
 
     inner class MenuViewHolder(private val binding: ItemMenuBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(menu: MenuMakanan) {
             binding.apply {
                 menuName.text = menu.menuName
                 desc.text = menu.description
-                tvPrice.text = menu.price
+                tvPrice.text = "Rp. " + menu.price
                 Glide.with(itemView)
                     .load(menu.imageUrl)
                     .into(image)
@@ -35,6 +36,7 @@ class MenuAdapter(private val menuList: List<MenuMakanan>) : RecyclerView.Adapte
                         putExtra(EXTRA_NAME, menu.menuName)
                         putExtra(EXTRA_DESC, menu.description)
                         putExtra(EXTRA_PRICE, menu.price)
+                        putExtra(USERNAME, username)
                     }
                     itemView.context.startActivity(
                         intent, ActivityOptionsCompat.makeSceneTransitionAnimation(

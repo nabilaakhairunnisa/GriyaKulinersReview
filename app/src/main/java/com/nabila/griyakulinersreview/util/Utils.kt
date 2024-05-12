@@ -1,9 +1,9 @@
 package com.nabila.griyakulinersreview.util
 
-import android.app.Activity
 import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.view.View
-import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.nabila.griyakulinersreview.R
@@ -29,16 +29,13 @@ fun showDialog (
     alertDialog.create().show()
 }
 
+fun Context.hideKeyboard(view: View) {
+    val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+}
+
 fun Context.showToast (text: String) =
     Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-
-fun transparentStatusBar(activity: Activity) {
-    val w = activity.window
-    w.setFlags(
-        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-    )
-}
 
 fun String.isValidEmail() =
     isNotEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()

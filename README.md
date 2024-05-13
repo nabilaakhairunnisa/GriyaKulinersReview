@@ -50,3 +50,6 @@ https://griya-kuliners-review.odoo.com/https/griya-kuliners-review-odoo-com/home
 
 ## Reference
 https://youtube.com/playlist?list=PLIIWAqaTrNlg7q0cfajkBj8OwG60qpBVL&feature=shared
+
+## License
+This project is licensed under the [MIT License](LICENSE).

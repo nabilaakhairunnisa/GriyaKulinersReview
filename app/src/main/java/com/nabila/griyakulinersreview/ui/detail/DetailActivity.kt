@@ -80,7 +80,7 @@ class DetailActivity : AppCompatActivity() {
             if (!viewModel.isAdmin()) {
                 delete.hide()
                 editMenu.hide()
-            }
+            } else addReview.hide()
         }
     }
 

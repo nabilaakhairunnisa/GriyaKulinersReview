@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             addMenu.setOnClickListener { moveToUpload() }
             logout.setOnClickListener { logout() }
-            editUsername.setOnClickListener { moveToEdit() }
+//            editUsername.setOnClickListener { moveToEdit() }
         }
     }
 

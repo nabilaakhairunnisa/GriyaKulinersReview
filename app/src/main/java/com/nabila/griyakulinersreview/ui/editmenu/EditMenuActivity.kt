@@ -56,6 +56,7 @@ class EditMenuActivity : AppCompatActivity() {
             edtPrice.setText(price)
             edtDesc.setText(menuDesc)
             addMenu.text = "Simpan Perubahan"
+            appbar.text = "Ubah Menu"
             addMenu.setOnClickListener { saveMenu() }
             image.setOnClickListener {
                 launcherGallery.launch(

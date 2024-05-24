@@ -33,7 +33,8 @@
                     android:fontFamily="serif"
                     android:text="@string/app_name"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorSecondary"/>
 
                 <ImageView
                     android:id="@+id/editMenu"
@@ -43,7 +44,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:src="@drawable/edit_username"
-                    app:tint="@color/black"
+                    app:tint="?attr/colorSecondary"
                     android:gravity="end"/>
 
                 <ImageView
@@ -55,7 +56,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:src="@drawable/delete"
-                    app:tint="@color/black"
+                    app:tint="?attr/colorSecondary"
                     android:gravity="end"/>
 
             </LinearLayout>

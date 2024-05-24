@@ -68,7 +68,9 @@
                 android:id="@+id/addReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/send"/>
+                android:text="@string/send"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/dark_green"/>
 
         </LinearLayout>
 

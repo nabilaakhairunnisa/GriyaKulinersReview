@@ -46,7 +46,7 @@ To run the Griya Kuliner's Review App locally, follow these steps:
 Contributions to the Griya Kuliner's Review App are welcome! If you have any suggestions, bug fixes, or new features to propose, please feel free to open an issue or submit a pull request.
 
 ## Download Link
-https://griya-kuliners-review.odoo.com/https/griya-kuliners-review-odoo-com/home
+
 
 ## Reference
 https://youtube.com/playlist?list=PLIIWAqaTrNlg7q0cfajkBj8OwG60qpBVL&feature=shared

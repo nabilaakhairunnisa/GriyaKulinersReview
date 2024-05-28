@@ -10,7 +10,7 @@ Griya Kuliner's Review App is a platform developed for Griya Kuliner's cafe to f
 - **Review Submission**: Users can submit reviews for the food and beverages they have tried.
 - **Rating System**: Reviews can include a rating to indicate the user's satisfaction level.
 - **Real-time Feedback**: Griya Kuliner's management can view and respond to customer reviews in real-time.
-- **Menu Management**: Admins can add, edit, and delete menu items to update the offerings.
+- **Menu Management**: Admin can add, edit, and delete menu items to update the offerings.
 
 
 ### Frontend

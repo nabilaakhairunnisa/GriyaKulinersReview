@@ -24,10 +24,9 @@ Griya Kuliner's Review App is a platform developed for a local MSME that enables
 - **Firebase Realtime Database**: Data is stored and synchronized in real-time using Firebase Realtime Database, allowing for efficient data management and retrieval.
 - **Firebase Storage**: Images and other media assets are stored securely using Firebase Storage, ensuring scalability and reliability.
 
-
 ## How to Install the APK
 To quickly try the Griya Kuliner's Review App on your Android device:
-1. Download the latest APK release from [this link](your-apk-link-here).
+1. Download the latest APK release from [this link](https://github.com/nabilaakhairunnisa/GriyaKulinersReview/raw/refs/heads/master/griya-kuliner-review.apk).
 2. On your device, go to **Settings > Security** and enable **Install from Unknown Sources** (if not already enabled).
 3. Open the downloaded APK file.
 4. Tap **Install** and wait until the process is complete.

@@ -41,8 +41,5 @@ If you want to run or modify the project in Android Studio, follow these steps:
 5. Make sure all necessary dependencies are included in your Gradle files.
 6. Build and run the application on an emulator or physical device.
 
-## Download Link
-https://drive.google.com/file/d/1TVIv5tNyJDNFRduiwmPCWz1LaPbZIdff/view?usp=drive_link
-
 ## License
 This project is licensed under the [MIT License](LICENSE).
